@@ -1,0 +1,16 @@
+  version: "3.7"
+
+  services:
+    mysql:
+      image: mysql
+      ports:
+        - 3306:3306
+      volumes:
+  #      - ./volume/mysql:/var/lib/mysql:rw
+        - ./inventory.sql:/docker-entrypoint-initdb.d/demo.sql:ro
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_DATABASE: "sample"
+        MYSQL_USER: "root"
+        MYSQL_PASSWORD: "admin"
+      restart: always
